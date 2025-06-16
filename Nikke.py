@@ -3,6 +3,7 @@ import threading
 import time
 
 mouse = Controller()
+print("按下鼠标中键触发 按下时间240ms 间隔45ms")
 
 # test
 '''
