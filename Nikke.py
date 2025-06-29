@@ -2,6 +2,15 @@ from pynput.mouse import Listener, Button, Controller
 import threading
 import time
 
+press_Duration = 0.30
+release_Duration = 0.030
+#加入随机数
+press_random_max = 0.33
+press_random_min = 0.25
+
+release_random_max = 0.030
+release_random_min = 0.025
+
 mouse = Controller()
 print("按下鼠标中键触发 按下时间240ms 间隔45ms\n注意：\n1. 开启连点后不要将鼠标移动到此控制台上 可能会卡死\n"
       "2. 此宏全局生效 如果在仅在游戏中不生效请检查是否以管理员身份运行\n3. 开关是鼠标中键\n"
@@ -25,10 +34,13 @@ clicking = False
 def alice():
     global clicking
     while clicking:
+        #引入随机数，保留3位小数
+        press_Duration =round(random.uniform(press_random_min,press_random_max),3)
+        release_Duration = round(random.uniform(release_random_min,release_random_max),3)
         mouse.press(Button.left)
-        time.sleep(0.24) # 按下0.24s
+        time.sleep(press_Duration) # 按下
         mouse.release(Button.left)
-        time.sleep(0.045) # 间隔0.045s
+        time.sleep(release_Duration) # 间隔
 '''
 def auto_click():
     global clicking
